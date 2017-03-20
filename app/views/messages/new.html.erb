@@ -1,0 +1,15 @@
+<h4>Send an E-Mail</h4>
+<form  action="/messages" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="recipient">Send To:</label>
+  <select name="recipient">
+      <% @all.users.each do |user| %>
+        <% if user.id != session[:user_id] %>
+          <option value="<%= user.id %>"><%= user.name %></option>
+        <% end %>
+      <% end %>
+  </select><br>
+  <label for="message">Message:</label>
+  <textarea name="message" rows="8" cols="80"></textarea><br>
+  <input type="submit" value="Send">
+</form>

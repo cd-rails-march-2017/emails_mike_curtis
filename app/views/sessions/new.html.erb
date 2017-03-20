@@ -1,0 +1,6 @@
+<h4>Enter a name to see that person's emails</h4>
+<form action="/sessions" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="text" name="name">
+  <input type="submit" value="Create User/Log In">
+</form>
