@@ -1,8 +1,8 @@
-<h1>Inbox</h1>
+<h1>Outbox</h1>
 <a href="/messages/new">New Message</a>
-<a href="/messages/outbox">Outbox</a>
+<a href="/">Inbox</a>
 <a href="/logout" data-method="POST">Logout</a>
 <% @messages.each do |message| %>
-  <p><%= message.sender.name %> <%= message.sender.created_at.strftime("%B %m, %Y | %I:%M %P") %></p>
+  <p><%= message.recipient.name %> <%= message.sender.created_at.strftime("%B %m, %Y | %I:%M %P") %></p>
   <p><%= message.message.content %></p>
 <% end %>

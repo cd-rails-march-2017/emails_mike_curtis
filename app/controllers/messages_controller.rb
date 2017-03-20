@@ -4,10 +4,12 @@ class MessagesController < ApplicationController
       redirect_to "/sessions"
     end
     @user = User.find(session[:user_id])
-    @message = @user.sent_by
+    @messages = @user.user_senders
   end
 
   def outbox
+    @user = User.find(session[:user_id])
+    @messages = @user.user_recipients
   end
 
   def new
@@ -18,7 +20,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-
+    message = Message.new(content: params[:message])
+    message.save
+    sender = User.find(session[:user_id])
+    recipient = User.find(params[:recipient])
+    Contact.create(sender: sender, recipient: recipient, message: message)
+    redirect_to "/messages/outbox"
   end
 
   def show

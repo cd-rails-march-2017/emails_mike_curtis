@@ -3,7 +3,7 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="recipient">Send To:</label>
   <select name="recipient">
-      <% @all.users.each do |user| %>
+      <% @all_users.each do |user| %>
         <% if user.id != session[:user_id] %>
           <option value="<%= user.id %>"><%= user.name %></option>
         <% end %>
